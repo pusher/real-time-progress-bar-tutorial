@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 
 	// Instantiate Pusher
-	var pusher = new Pusher('0b4b9a3e205f2d9f7766') // Your Pusher API Key
+	var pusher = new Pusher('0b4b9a3e205f2d9f7766') // Change it to your Pusher APP Key
   var channel = pusher.subscribe('signup_process_'+uID) // The Channel you want to subscribe to
 
   channel.bind('update', function(data) { // Bind to an event on our channel, in our case, update

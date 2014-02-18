@@ -2,9 +2,9 @@ require 'sinatra'
 require 'pusher'
 
 ## required keys for Pusher. you can find them in your dashboard at https://app.pusherapp.com/
-Pusher.app_id = ENV['pusher_app_id']
-Pusher.key = ENV['pusher_app_key']
-Pusher.secret = ENV['pusher_app_secret']
+Pusher.app_id = ENV['PUSHER_APP_ID']
+Pusher.key = ENV['PUSHER_APP_KEY']
+Pusher.secret = ENV['PUSHER_APP_SECRET']
 
 get '/' do
   erb :index
@@ -22,13 +22,12 @@ post '/create_account_with_realtime' do
   fake_background_job(name, pusher_channel)
 end
 
-
 def fake_background_job(name, pusher_channel) # Faking a background job
   Pusher.trigger(pusher_channel, 'update', {message: "Starting provisioning your account #{name}", progress: 30 })
   sleep(3)
-  Pusher.trigger(pusher_channel, 'update', {message: "Sorry #{name}, It's taking a bit of time.", progress: 30 })
+  Pusher.trigger(pusher_channel, 'update', {message: "Sorry #{name}, It's taking a bit of time...", progress: 30 })
   sleep(2)
-  Pusher.trigger(pusher_channel, 'update', {message: "Adding demo data, almost there.", progress: 60 })
+  Pusher.trigger(pusher_channel, 'update', {message: "almost there, adding the demo data...", progress: 60 })
   sleep(4)
   Pusher.trigger(pusher_channel, 'update', {message: "Polising your new account...", progress: 90 })
   sleep(3)
