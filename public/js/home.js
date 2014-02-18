@@ -14,9 +14,8 @@ $(document).ready(function(){
   	progressBar.width(data.progress+"%")
     messageBox.html(data.message)
 
-    // Process is complete, remove progress bar and do whatever you want now, maybe redirect them to their freshly created account?
+    // Process is complete,Do whatever you want now, maybe redirect them to their freshly created account?
     if (data.progress == 100) {
-    	$progressBar.parent().toggleClass('hide')
     	messageBox.html('Was it better with this process?')
     }
   });
@@ -28,14 +27,17 @@ $(document).ready(function(){
 		var form = this
 		var btn = $(form).find('button')
 		var progressBar = $(form).find('.progress')
-		progressBar.toggleClass('hide')
+		progressBar.removeClass('hide')
 		btn.prop('disabled', true)
 
 		$.post( $(form).attr('action'),{name: name, uid: uID} , function () {
 		}).done(function(response) {
 			btn.prop('disabled', false)
-			progressBar.toggleClass('hide')
-			$(form).children('.messages').html(response)
+
+			progressBar.toggleClass('active')
+			if (!$(form).attr('id')) {
+				$(form).children('.messages').html(response)
+			}
 		})
 	})
 })
