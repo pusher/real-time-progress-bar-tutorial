@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Death to the spinning wheels!</title>
+
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/pusher.min.js"></script> <!-- required Pusher library for the realtime magic  -->
+    <script src="js/home.js"></script> <!-- contains the form submission logics and handle realtime events -->
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h3 class="text-muted">Realtime Progress Bar Demo</h3>
+      </div>
+      <div class="jumbotron text-center">
+      
+        <h1>Well, Hello There!</h1>
+        <p class="lead">Would you like some <a href="http://www.pusher.com">Pusher</a> realtime goodness?</p>
+
+        <!-- I can haz your name please -->
+        <div class="row">
+          <div class="form-group col-lg-4 col-lg-offset-4">
+            <label for="name">Your name</label>
+            <input type="text" class="form-control input-lg" id="name" placeholder="Bob (optional)">
+          </div>  
+        </div>
+      
+        <!-- No realtime, sad -->
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>No realtime progress :(</h2>
+            <form action="/create_account_no_realtime" role="form">
+              <button class="btn btn-lg btn-success" type="submit">Create my fake account!</button>
+
+              <div class="progress progress-striped active hide">
+                <div class="progress-bar progress-bar-info" role="progressbar"style="width: 100%"></div>
+              </div>
+              <p class="messages"></p>
+            </form>
+          </div>
+
+          <!-- With realtime goodness -->
+          <div class="col-lg-6">
+            <h2>With realtime progress :)</h2>
+            <form action="/create_account_with_realtime" role="form" id="create-account-form-with-realtime">
+              <button class="btn btn-lg btn-success" type="submit">Create my fake account!</button>
+
+              <div class="progress progress-striped active hide">
+                <div class="progress-bar progress-bar-info" id='realtime-progress-bar' role="progressbar"style="width: 0%"></div>
+              </div>
+              <p class="messages"></p>
+            </form>
+          </div> 
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
